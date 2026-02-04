@@ -1,0 +1,23 @@
+// Online C compiler to run C program online
+#include <stdio.h>
+
+int main() {
+int i,n;
+int r=5, t = 4;
+int nextTerm = r + t;
+
+printf("Enter the number of terms;");
+scanf("%d",&n);
+
+printf("Fibonacci series; %d, %d,",r,t);
+
+for (i=3;i <= n; ++ i){
+    printf("%d,",nextTerm);
+    r = t;
+    t = nextTerm;
+    nextTerm = r + t;
+}
+
+return 0;
+
+}
