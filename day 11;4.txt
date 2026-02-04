@@ -1,0 +1,48 @@
+#include <stdio.h>
+#define MAX 100
+
+struct BrowserStack {
+    int pages[MAX];
+    int top;
+};
+
+// Initialize stack
+void init(struct BrowserStack *s) {
+    s->top = -1;
+}
+
+int isEmpty(struct BrowserStack *s) {
+    return s->top == -1;
+}
+
+void push(struct BrowserStack *s, int pageID) {
+    if (s->top == MAX - 1) {
+        printf("Stack Overflow!\n");
+    } else {
+        s->pages[++(s->top)] = pageID;
+        printf("Opened page: %d\n", pageID);
+    }
+}
+
+int pop(struct BrowserStack *s) {
+    if (isEmpty(s)) return -1;
+    return s->pages[(s->top)--];
+}
+
+int peek(struct BrowserStack *s) {
+    return s->pages[s->top];
+}
+
+int main() {
+    struct BrowserStack history;
+    init(&history);
+
+    push(&history, 101);
+    push(&history, 102);
+    push(&history, 103);
+
+    printf("Back pressed. Removed: %d\n", pop(&history));
+    printf("Current page: %d\n", peek(&history));
+
+    return 0;
+}
