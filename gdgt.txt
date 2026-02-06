@@ -1,0 +1,21 @@
+#include <stdio.h>
+
+int main() {
+    float prices[] = { 10.5, 20.0, 15.75, 30.25 };
+    int n = 4;
+
+    float *p = prices;   // pointer to first element
+    float sum = 0.0;
+
+    printf("Prices:\n");
+
+    while (p < prices + n) {
+        printf("%.2f\n", *p);  // access via pointer
+        sum += *p;
+        p++;                   // move to next element
+    }
+
+    printf("Total = %.2f\n", sum);
+
+    return 0;
+}
