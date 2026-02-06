@@ -1,0 +1,44 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+struct Plate {
+    char plateID[10];
+    struct Plate* next;
+};
+
+struct Plate* top = NULL;
+int count = 0;
+
+void push(char* id) {
+    struct Plate* newPlate = (struct Plate*)malloc(sizeof(struct Plate));
+    strcpy(newPlate->plateID, id);
+    newPlate->next = top; // Point new plate to the old top
+    top = newPlate;       // Update top to the new plate
+    count++;
+}
+
+void pop() {
+    if (top == NULL) return;
+    struct Plate* temp = top;
+    top = top->next;
+    printf("Removed plate: %s\n", temp->plateID);
+    free(temp);
+    count--;
+}
+
+void peek() {
+    if (top != NULL) printf("Top plate: %s\n", top->plateID);
+}
+
+int main() {
+    push("P1");
+    push("P2");
+    push("P3");
+
+    pop();  // Removes P3
+    peek(); // Shows P2
+    printf("Total plates: %d\n", count);
+
+    return 0;
+}
